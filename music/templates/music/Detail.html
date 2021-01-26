@@ -1,0 +1,104 @@
+{% extends 'music/base.html' %}
+{% block title %}Album Details{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+    <div class="container-fluid songs-container">
+        <div class="row">
+
+            <!-- Left Album Info -->
+            <div class = "col-sm-4 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="{% url 'music:detail' album.id %}">
+                            <img src="{{ album.album_logo.url }}" class="img-responsive">
+                        </a>
+
+                        <h1>{{ album.album_title }}
+                             <small>{{ album.genre }}</small>
+                        </h1>
+                        <h2>{{ album.artist }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Song info -->
+            <div class ="col-sm-8 col-md-9">
+                <ul class="nav nav-pills" style="margin-bottom: 10px">
+                    <li class="active"><a href="{% url 'music:detail' album.id">View All</a></li>
+                    <li><a href="#"> Add New Song </a></li>
+                </ul>
+
+                <div class = "panel panel-default">
+                    <div class="panel-body">
+                        <h3>All Songs</h3>
+                        <table class="table">
+                            <thread>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Audio Files</th>
+                                    <th>Favourite</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thread>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+<!-- Simple code 2
+{% extends 'music/base.html' %}
+{% block title %}Album Details{% endblock %}
+
+{% block body %}
+    <img src="{{ album.album_logo }}">
+
+    <h1>{{ album.album_title }} - {{ album.artist }}</h1>
+    <h3>$$$$$$$$$$$$$$$$$$$$$$</h3>
+
+    <!-- Just if an error comes or the user enters something funny
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <form action = "{% url 'music:DetailView' album.id %}" method="post">
+        {% csrf_token %}
+        {% for song in album.song_set.all %}
+            <input type = "radio" id = "song{{ forloop.counter }}"name = "song" value="{{ song.id }}">
+            <label for="song{{ forloop.counter }}">
+                {{ song.song_title }}
+                {% if song.is_favourite %}
+                    <img src="https://i.imgur.com/b9b13Rd.png" width="13px" height="13px" />
+
+                {% endif %}
+            </label><br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+-->
+
+<!-- form for favourites:
+<form action = "{% url 'music:favourite' album.id %}" method="post">
+        {% csrf_token %}
+        {% for song in album.song_set.all %}
+            <input type = "radio" id = "song{{ forloop.counter }}"name = "song" value="{{ song.id }}">
+            <label for="song{{ forloop.counter }}">
+                {{ song.song_title }}
+                {% if song.is_favourite %}
+                    <img src="https://i.imgur.com/b9b13Rd.png" width="13px" height="13px" />
+
+                {% endif %}
+            </label><br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit">
+</form>
+-->
+

@@ -1,0 +1,23 @@
+<!--new and working -->
+{% for field in form %}
+    <div class="control-group {% if field.errors %}has-error{% endif %}">
+        {% if field.field.widget.input_type != 'hidden' %}
+        <label class="control-label">{{ field.label }}</label>
+        {% endif %}
+        <div class="controls">{{ field }}</div><br>
+    </div>
+{% endfor %}
+
+
+<!--old and not working
+{% for field in form %}
+    <div class="form-group">
+        <div class="col-offset-2 col-sm-10">
+            <span class="text-danger small">{{ field.errors }}</span>
+        </div>
+        <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+        <div class="col-sm-10">{{ field }}</div>
+    </div>
+{% endfor %}
+
+-->
